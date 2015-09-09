@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>alfredworkflow-ffp.mikezahno.com.github</string>
+	<key>category</key>
+	<string>Webdev</string>
+	<key>connections</key>
+	<dict>
+		<key>AAFD38AB-E14F-496D-99A0-6CAF1911BDB9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DD4D0CCA-C246-4416-99D6-CDE886D2C6BB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Michael Zahno</string>
+	<key>description</key>
+	<string>Switch Firefox Profile Workflow</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Switch Firefox Profile</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>3</integer>
+				<key>keyword</key>
+				<string>ffp</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait...</string>
+				<key>script</key>
+				<string>/usr/bin/ruby ffp.rb "{query}"</string>
+				<key>title</key>
+				<string>Switch Firefox Profile</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>AAFD38AB-E14F-496D-99A0-6CAF1911BDB9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>1</integer>
+				<key>script</key>
+				<string># Switch Firefox Profile
+# https://developer.mozilla.org/en-US/docs/Mozilla/Command_Line_Options
+# /Applications/Firefox.app/Contents/MacOS/firefox-bin -profilemanager
+
+# Quit Firefox
+# osascript -e 'quit app "Firefox"'
+# sleep 5
+
+# Launch FF with a new Profile
+/Applications/Firefox.app/Contents/MacOS/firefox -P {query} -new-instance -no-remote &amp;&gt; /dev/null &amp;</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DD4D0CCA-C246-4416-99D6-CDE886D2C6BB</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>AAFD38AB-E14F-496D-99A0-6CAF1911BDB9</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>DD4D0CCA-C246-4416-99D6-CDE886D2C6BB</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/mikezahno/alfredworkflow-ffp</string>
+</dict>
+</plist>
