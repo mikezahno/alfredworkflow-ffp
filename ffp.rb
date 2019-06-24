@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FFPDIR = File.join(Dir.home, 'library', 'application support', 'firefox', 'profiles')
+FFPDIR = File.join(Dir.home, 'Library', 'Application Support', 'Firefox', 'Profiles')
 PROFILES = Dir.glob(File.join(FFPDIR, '*')).sort
 # warn(PROFILES)
 
