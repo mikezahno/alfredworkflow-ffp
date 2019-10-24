@@ -13,7 +13,7 @@ XML_PROFILES = PROFILES.map do |profile|
   %(
     <item uid="#{profile}" arg="#{name}">
       <title>#{name}</title>
-      <subtitle>#{FFPDIR}#{profile}</subtitle>
+      <subtitle>#{profile}</subtitle>
     </item>)
 end.join
 
