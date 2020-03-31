@@ -2,7 +2,7 @@
 
 FFPDIR = File.join(Dir.home, 'Library', 'Application Support', 'Firefox', 'Profiles')
 PROFILES = Dir.glob(File.join(FFPDIR, '*')).sort
-# warn(PROFILES)
+warn(PROFILES) if ENV['DEBUG']
 
 # Start the XML string that will be sent to Alfred. This just uses strings to avoid dependencies.
 XML_HEAD = %(<?xml version="1.0"?>\n<items>)
