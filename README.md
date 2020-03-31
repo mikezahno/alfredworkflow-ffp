@@ -11,4 +11,3 @@ This Alfred workflow lets you select any Firefox profiles found in `~/Library/Ap
 ## Todo
 * Add option to quit other FF instances
 * Add option to switch between profiles in Google Chrome
-* Clean up code ;)
