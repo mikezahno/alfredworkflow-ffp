@@ -8,13 +8,21 @@ warn(PROFILES) if ENV['DEBUG']
 XML_HEAD = %(<?xml version="1.0"?>\n<items>)
 XML_PROFILES = PROFILES.map do |profile|
   name = File.basename(profile).split('.', 2).last
+  compatibility_filename = File.join(profile, 'compatibility.ini')
+  icon_dir = File.read(compatibility_filename)
+               &.match(/LastPlatformDir=(?<dir>.*)/)
+               &.named_captures
+               &.fetch('dir', nil)
+  icon_filename = File.join(icon_dir, 'firefox.icns') if icon_dir
 
   # Assemble this item's XML string for Alfred. See http://www.alfredforum.com/topic/5-generating-feedback-in-workflows/
   %(
     <item uid="#{profile}" arg="#{name}">
       <title>#{name}</title>
       <subtitle>#{profile}</subtitle>
-    </item>)
+      <icon>#{icon_filename}</icon>
+    </item>
+  )
 end.join
 
 # Finish off and echo the XML string to Alfred.
