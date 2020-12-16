@@ -14,10 +14,13 @@ XML_PROFILES = PROFILES.reverse_each.map do |profile|
                &.named_captures
                &.fetch('dir', nil)
   icon_filename = File.join(icon_dir, 'firefox.icns') if icon_dir
+  application_dir = File.dirname(icon_dir)
+  application_filename = File.join(application_dir, 'MacOS', 'Firefox')
+  commmand = "'#{application_filename}' -P '#{name}' -new-instance -no-remote &amp;&gt; /dev/null &amp;"
 
   # Assemble this item's XML string for Alfred. See http://www.alfredforum.com/topic/5-generating-feedback-in-workflows/
   %(
-    <item uid="#{profile}" arg="#{name}">
+    <item uid="#{profile}" arg="#{commmand}">
       <title>#{name}</title>
       <subtitle>#{profile}</subtitle>
       <icon>#{icon_filename}</icon>
