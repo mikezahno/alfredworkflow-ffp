@@ -1,26 +1,34 @@
-theQuery = ARGV[0]
+# frozen_string_literal: true
 
-# get profiles
-ffpdir = "~/Library/Application\\ Support/Firefox/Profiles/"
-profiles = `ls #{ffpdir}`.split("\n")
-# STDERR.puts profiles
+FFPDIR = File.join(Dir.home, 'Library', 'Application Support', 'Firefox', 'Profiles')
+PROFILES = Dir.glob(File.join(FFPDIR, '*')).sort_by { |f| File.mtime(f) }
+warn(PROFILES) if ENV['DEBUG']
 
 # Start the XML string that will be sent to Alfred. This just uses strings to avoid dependencies.
-xmlString = "<?xml version=\"1.0\"?>\n<items>\n"
-profiles.each do | profile |
-    # STDERR.puts profile
-    profileClean = `echo \"#{profile}\" | grep -oEi "\\.([A-z0-9\-])+$"`.delete('.').delete("\n")
+XML_HEAD = %(<?xml version="1.0"?>\n<items>)
+XML_PROFILES = PROFILES.reverse_each.map do |profile|
+  name = File.basename(profile).split('.', 2).last
+  compatibility_filename = File.join(profile, 'compatibility.ini')
+  icon_dir = File.read(compatibility_filename)
+               &.match(/LastPlatformDir=(?<dir>.*)/)
+               &.named_captures
+               &.fetch('dir', nil)
+  icon_filename = File.join(icon_dir, 'firefox.icns') if icon_dir
+  application_dir = File.dirname(icon_dir)
+  application_filename = File.join(application_dir, 'MacOS', 'Firefox')
+  commmand = "'#{application_filename}' -P '#{name}' -new-instance -no-remote &amp;&gt; /dev/null &amp;"
 
-    # Assemble this item's XML string for Alfred. See http://www.alfredforum.com/topic/5-generating-feedback-in-workflows/
-    thisXmlString = "\t<item uid=\"#{profile}\" arg=\"#{profileClean}\">
-        <title>#{profileClean}</title>
-        <subtitle>#{ffpdir}#{profile}</subtitle>
-    </item>\n"
-
-    # Append this process's XML string to the global XML string.
-    xmlString += thisXmlString
-end
+  # Assemble this item's XML string for Alfred. See http://www.alfredforum.com/topic/5-generating-feedback-in-workflows/
+  %(
+    <item uid="#{profile}" arg="#{commmand}">
+      <title>#{name}</title>
+      <subtitle>#{profile}</subtitle>
+      <icon>#{icon_filename}</icon>
+    </item>
+  )
+end.join
 
 # Finish off and echo the XML string to Alfred.
-xmlString += "</items>"
-puts xmlString
+XML_TAIL = '</items>'
+
+puts [XML_HEAD, XML_PROFILES, XML_TAIL].join

@@ -5,10 +5,9 @@ This Alfred workflow lets you select any Firefox profiles found in `~/Library/Ap
 
 ## Installing
 1. Click the download button to the right
-2. Double-click to import into Alfred 2
+2. Double-click to import into Alfred 2 (or later)
 3. Review the workflow to add custom Hotkeys or just use the keyword ffp
 
 ## Todo
 * Add option to quit other FF instances
 * Add option to switch between profiles in Google Chrome
-* Clean up code ;)

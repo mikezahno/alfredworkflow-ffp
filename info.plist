@@ -5,7 +5,7 @@
 	<key>bundleid</key>
 	<string>alfredworkflow-ffp.mikezahno.com.github</string>
 	<key>category</key>
-	<string>Webdev</string>
+	<string>Internet</string>
 	<key>connections</key>
 	<dict>
 		<key>AAFD38AB-E14F-496D-99A0-6CAF1911BDB9</key>
@@ -17,6 +17,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -33,6 +35,14 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -51,6 +61,12 @@
 				<string>Please wait...</string>
 				<key>script</key>
 				<string>/usr/bin/ruby ffp.rb "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
 				<key>title</key>
 				<string>Switch Firefox Profile</string>
 				<key>type</key>
@@ -63,7 +79,7 @@
 			<key>uid</key>
 			<string>AAFD38AB-E14F-496D-99A0-6CAF1911BDB9</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -71,18 +87,13 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>script</key>
-				<string># Switch Firefox Profile
-# https://developer.mozilla.org/en-US/docs/Mozilla/Command_Line_Options
-# /Applications/Firefox.app/Contents/MacOS/firefox-bin -profilemanager
-
-# Quit Firefox
-# osascript -e 'quit app "Firefox"'
-# sleep 5
-
-# Launch FF with a new Profile
-/Applications/Firefox.app/Contents/MacOS/firefox -P {query} -new-instance -no-remote &amp;&gt; /dev/null &amp;</string>
+				<string>{query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -91,7 +102,7 @@
 			<key>uid</key>
 			<string>DD4D0CCA-C246-4416-99D6-CDE886D2C6BB</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -100,15 +111,23 @@
 	<dict>
 		<key>AAFD38AB-E14F-496D-99A0-6CAF1911BDB9</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>DD4D0CCA-C246-4416-99D6-CDE886D2C6BB</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string></string>
 	<key>webaddress</key>
 	<string>https://github.com/mikezahno/alfredworkflow-ffp</string>
 </dict>
