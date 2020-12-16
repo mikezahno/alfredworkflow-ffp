@@ -7,7 +7,7 @@ warn(PROFILES) if ENV['DEBUG']
 # Start the XML string that will be sent to Alfred. This just uses strings to avoid dependencies.
 XML_HEAD = %(<?xml version="1.0"?>\n<items>)
 XML_PROFILES = PROFILES.map do |profile|
-  name = File.extname(profile).delete('.')
+  name = File.basename(profile).split('.', 2).last
 
   # Assemble this item's XML string for Alfred. See http://www.alfredforum.com/topic/5-generating-feedback-in-workflows/
   %(
